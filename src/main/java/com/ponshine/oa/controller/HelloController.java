@@ -26,10 +26,20 @@ public class HelloController {
     @RequestMapping("/index")
     public String index(ModelMap map) {
         //map.addAttribute("hello", "hello Thymeleaf!");
-        return "hello";
+        return "index";
     }
     @RequestMapping("/register")
     public String register(ModelMap map) {
+        //map.addAttribute("hello", "hello Thymeleaf!");
+        return "login/create-account";
+    }
+    @RequestMapping("/login")
+    public String login(ModelMap map) {
+        //map.addAttribute("hello", "hello Thymeleaf!");
+        return "login/login-1";
+    }
+    @RequestMapping("/login1")
+    public String login1(ModelMap map) {
         //map.addAttribute("hello", "hello Thymeleaf!");
         return "index";
     }
