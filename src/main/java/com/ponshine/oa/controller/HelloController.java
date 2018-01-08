@@ -33,12 +33,12 @@ public class HelloController {
         //map.addAttribute("hello", "hello Thymeleaf!");
         return "login/create-account";
     }
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login1")
     public String login(ModelMap map) {
         //map.addAttribute("hello", "hello Thymeleaf!");
-        return "login/login-1";
+        return "index/login";
     }
-    @RequestMapping("/login1")
+    @RequestMapping("/login2")
     public String login1(ModelMap map) {
         //map.addAttribute("hello", "hello Thymeleaf!");
         return "index";

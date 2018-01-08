@@ -1,23 +1,27 @@
 package com.ponshine.oa.user.dao;
 
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
 import com.ponshine.oa.user.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- * Created by Brave on 16/10/12.
- */
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findByName(String name);
+     User findByUserId(String name);
+    /*
+     * @class_name: UserRepository
+     * @describe: TODO  根据邮箱和密码查询用户，登录使用
+     * @author: liuhui
+     * @date: 2017/12/28
+     **/
+    User findByEmailAndPassword(String email,String password);
 
-    User findByNameAndAge(String name, Integer age);
-
-    @Query("from User u where u.name=:name")
-    User findUser(@Param("name") String name);
+    /**
+     * @class_name: UserRepository
+     * @describe: TODO  根据邮箱查询用户
+     * @author: liuhui
+     * @date: 2017/12/29
+     **/
+    User findByEmail(String email);
 
 }
 

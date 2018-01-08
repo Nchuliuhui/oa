@@ -1,71 +1,81 @@
 package com.ponshine.oa.user.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
- * Created by Brave on 16/10/12.
+ * @author liuhui
+ * @version V1.0
+ * @Title:
+ * @Package
+ * @Description: TODO 用户实体类
+ * @date
  */
 @Entity
-public class User {
-
-    //没有默认构造会报错
-    public User(){
-
-    }
-
-    public User(String name, Integer age, Card card) {
-        this.name = name;
-        this.age = age;
-        this.card = card;
-    }
-
+public class User implements Serializable{
     @Id
     @GeneratedValue
-    private Long id;
+    private Long userId; //用户id
+    @Column
+    private String userName;//用户名
+    @Column
+    private Integer age;   //年龄
+    @Column
+    private String sex;   //性别
+    @Column
+    private String password; //密码
+    @Column
+    private String passwordMD5; //加密密码
+    @Column
+    private String email; //邮箱
+    @Column
+    private Date createTime ; //创建时间
+    @Column
+    private String userType; //用户类型
+    @Column
+    private Long departmentId; //部门id
+    @Column
+    private Byte state; //用户状态,0:创建未认证（比如没有激活，没有输入验证码等等）--等待验证的用户 ,
+    // 1:正常状态,2：用户被锁定.
+    @ManyToMany(fetch = FetchType.EAGER) // 立即从数据库中进行加载数据
+    @JoinTable(name = "SysUserRole", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = {
+            @JoinColumn(name = "roleId") })
+    private List<SysRole> roleList;//一个用户具有多个角色
 
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private Integer age;
-
-    /**
-     * @OneToOne：一对一关联
-     * cascade：级联配置
-     * CascadeType.PERSIST: 级联新建
-     * CascadeType.REMOVE : 级联删除
-     * CascadeType.REFRESH: 级联刷新
-     * CascadeType.MERGE  : 级联更新
-     * CascadeType.ALL    : 以上全部四项
-     * @JoinColumn:主表外键字段
-     * cid：Care所映射的表中的一个字段(会在User表创建一个cid字段,与Care外键关系)
-     */
-    @OneToOne(cascade = CascadeType.REFRESH)//使用CascadeType.ALL无法保存成功
-    @JoinColumn(name = "cid", unique=true)
-    private Card card;
-
-    public Card getCard() {
-        return card;
+    public User(String userName, Integer age, String sex, String password, String passwordMD5, String email, Date createTime, String userType, Long departmentId, Byte state, List<SysRole> roleList) {
+        this.userName = userName;
+        this.age = age;
+        this.sex = sex;
+        this.password = password;
+        this.passwordMD5 = passwordMD5;
+        this.email = email;
+        this.createTime = createTime;
+        this.userType = userType;
+        this.departmentId = departmentId;
+        this.state = state;
+        this.roleList = roleList;
     }
 
-    public void setCard(Card card) {
-        this.card = card;
+    public User() {
+        super();
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Integer getAge() {
@@ -76,4 +86,75 @@ public class User {
         this.age = age;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordMD5() {
+        return passwordMD5;
+    }
+
+    public void setPasswordMD5(String passwordMD5) {
+        this.passwordMD5 = passwordMD5;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public Long getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public Byte getState() {
+        return state;
+    }
+
+    public void setState(Byte state) {
+        this.state = state;
+    }
+
+    public List<SysRole> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<SysRole> roleList) {
+        this.roleList = roleList;
+    }
 }
