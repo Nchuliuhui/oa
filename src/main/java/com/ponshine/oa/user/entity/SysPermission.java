@@ -7,7 +7,7 @@ import javax.persistence.*;
  * @version V1.0
  * @Title:
  * @Package
- * @Description: TODO
+ * @Description: TODO    权限实体类;
  * @date 2018/01/07 18:20
  */
 @Entity

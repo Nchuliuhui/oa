@@ -10,7 +10,7 @@ import java.util.Arrays;
  * @Description: TODO   后台响应参数类
  * @date
  */
-public class ResultResponse {
+public class ResponseResult {
     private int[] resultArray = new int[] { 0, 1 };// 请求结果集，0为失败、1为成功
     private int result;// 请求结果标志，0为失败、1为成功
     private String resultInfo;// 请求结果原因信息
@@ -19,7 +19,7 @@ public class ResultResponse {
 
     @Override
     public String toString() {
-        return "ResultResponse{" +
+        return "ResponseResult{" +
                 "resultArray=" + Arrays.toString(resultArray) +
                 ", result=" + result +
                 ", resultInfo='" + resultInfo + '\'' +

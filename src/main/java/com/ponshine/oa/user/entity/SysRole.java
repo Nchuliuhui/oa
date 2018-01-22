@@ -30,7 +30,7 @@ public class SysRole implements Serializable{
     // 用户 - 角色关系定义;
     @ManyToMany
     @JoinTable(name = "SysUserRole", joinColumns = { @JoinColumn(name = "roleId") }, inverseJoinColumns = {
-            @JoinColumn(name = "uid") })
+            @JoinColumn(name = "userId") })
     private List<User> user;// 一个角色对应多个用户
 
     public Long getId() {

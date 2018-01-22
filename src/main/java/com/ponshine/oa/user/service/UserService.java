@@ -1,9 +1,11 @@
 package com.ponshine.oa.user.service;
 
-import com.ponshine.oa.common.dto.ResultResponse;
+import com.ponshine.oa.common.dto.ResponseResult;
 import com.ponshine.oa.user.dao.UserRepository;
 import com.ponshine.oa.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author liuhui
@@ -13,11 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Description: TODO   用户业务层
  * @date
  */
+@Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    private ResultResponse resultResponse;
+    private ResponseResult resultResponse = new ResponseResult();
 
     /**
      * 登录
@@ -36,7 +39,7 @@ public class UserService {
      * @param user
      * @return
      */
-    public ResultResponse register(User user){
+    public ResponseResult register(User user){
         User userUsed = userRepository.findByEmail(user.getEmail());
         if(userUsed.getUserId() != 0){
             resultResponse.setResult(0);
@@ -47,5 +50,13 @@ public class UserService {
             resultResponse.setResultInfo("注册成功");
         }
         return resultResponse;
+    }
+
+
+
+    @Transactional(readOnly=true)
+    public User findByUsername(String userName) {
+        System.out.println("UserInfoServiceImpl.findByUsername()");
+        return userRepository.findByUsername(userName);
     }
 }

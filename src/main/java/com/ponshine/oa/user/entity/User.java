@@ -18,16 +18,16 @@ public class User implements Serializable{
     @Id
     @GeneratedValue
     private Long userId; //用户id
-    @Column
-    private String userName;//用户名
-    @Column
+    @Column (columnDefinition="varchar(100) COMMENT '用户名'")
+    private String username;//用户名
+    @Column (columnDefinition=" COMMENT '年龄'")
     private Integer age;   //年龄
     @Column
     private String sex;   //性别
     @Column
     private String password; //密码
     @Column
-    private String passwordMD5; //加密密码
+    private String salt;// 加密密码的盐
     @Column
     private String email; //邮箱
     @Column
@@ -44,22 +44,13 @@ public class User implements Serializable{
             @JoinColumn(name = "roleId") })
     private List<SysRole> roleList;//一个用户具有多个角色
 
-    public User(String userName, Integer age, String sex, String password, String passwordMD5, String email, Date createTime, String userType, Long departmentId, Byte state, List<SysRole> roleList) {
-        this.userName = userName;
-        this.age = age;
-        this.sex = sex;
-        this.password = password;
-        this.passwordMD5 = passwordMD5;
-        this.email = email;
-        this.createTime = createTime;
-        this.userType = userType;
-        this.departmentId = departmentId;
-        this.state = state;
-        this.roleList = roleList;
-    }
-
-    public User() {
-        super();
+    /**
+     * 密码盐.
+     *
+     * @return
+     */
+    public String getCredentialsSalt() {
+        return this.username + this.salt;
     }
 
     public Long getUserId() {
@@ -71,11 +62,11 @@ public class User implements Serializable{
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String username) {
+        this.username = username;
     }
 
     public Integer getAge() {
@@ -102,12 +93,12 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public String getPasswordMD5() {
-        return passwordMD5;
+    public String getSalt() {
+        return salt;
     }
 
-    public void setPasswordMD5(String passwordMD5) {
-        this.passwordMD5 = passwordMD5;
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     public String getEmail() {
@@ -156,5 +147,41 @@ public class User implements Serializable{
 
     public void setRoleList(List<SysRole> roleList) {
         this.roleList = roleList;
+    }
+
+    public User() {
+        super();
+    }
+
+    public User(String username, Integer age, String sex, String password, String salt, String email, Date createTime, String userType, Long departmentId, Byte state, List<SysRole> roleList) {
+        this.username = username;
+        this.age = age;
+        this.sex = sex;
+        this.password = password;
+        this.salt = salt;
+        this.email = email;
+        this.createTime = createTime;
+        this.userType = userType;
+        this.departmentId = departmentId;
+        this.state = state;
+        this.roleList = roleList;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + username + '\'' +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", email='" + email + '\'' +
+                ", createTime=" + createTime +
+                ", userType='" + userType + '\'' +
+                ", departmentId=" + departmentId +
+                ", state=" + state +
+                ", roleList=" + roleList +
+                '}';
     }
 }

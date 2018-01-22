@@ -27,14 +27,15 @@
 <div class="container">
 	<div class="col-md-12">
 		<h1 class="margin-bottom-15">Login Form One</h1>
+		错误信息：<h4 text="${msg}"></h4>
 		<form class="form-horizontal templatemo-container templatemo-login-form-1 margin-bottom-30" role="form"
-			  action="#" method="post">
+			  action="localhost:8080/login" method="post">
 			<div class="form-group">
 				<div class="col-xs-12">
 					<div class="control-wrapper">
 						<label for="username" class="control-label fa-label"><i
 								class="fa fa-user fa-medium"></i></label>
-						<input type="text" class="form-control" id="username" placeholder="Username">
+						<input type="text" class="form-control" id="username" name = "username" placeholder="Username">
 					</div>
 				</div>
 			</div>
@@ -43,7 +44,7 @@
 					<div class="control-wrapper">
 						<label for="password" class="control-label fa-label"><i
 								class="fa fa-lock fa-medium"></i></label>
-						<input type="password" class="form-control" id="password" placeholder="Password">
+						<input type="password" class="form-control" name = "password" id="password" placeholder="Password">
 					</div>
 				</div>
 			</div>
@@ -89,8 +90,8 @@
 <!-- Javascript -->
 <script src="js/jquery-1.8.2.min.js"></script>
 <script src="js/supersized.3.2.7.min.js"></script>
-<script src="js/supersized-init.js"></script>
 <script src="js/scripts.js"></script>
+<script src="js/supersized-init.js"></script>
 
 </body>
 

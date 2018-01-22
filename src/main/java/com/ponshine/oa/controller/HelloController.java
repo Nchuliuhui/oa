@@ -36,6 +36,7 @@ public class HelloController {
     @RequestMapping(value = "/login1")
     public String login(ModelMap map) {
         //map.addAttribute("hello", "hello Thymeleaf!");
+        System.out.print("hahahah");
         return "index/login";
     }
     @RequestMapping("/login2")
