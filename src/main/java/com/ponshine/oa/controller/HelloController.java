@@ -39,10 +39,10 @@ public class HelloController {
         System.out.print("hahahah");
         return "index/login";
     }
-    @RequestMapping("/login2")
+    @RequestMapping("/login")
     public String login1(ModelMap map) {
         //map.addAttribute("hello", "hello Thymeleaf!");
-        return "index";
+        return "login";
     }
 }
 
