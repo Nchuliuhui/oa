@@ -15,40 +15,85 @@ import java.util.List;
  */
 @Entity
 public class User implements Serializable{
-    @Id
-    @GeneratedValue
-    private Long userId; //用户id
-    @Column (columnDefinition="varchar(100) COMMENT '用户名'")
-    private String username;//用户名
-    @Column (columnDefinition=" COMMENT '年龄'")
-    private Integer age;   //年龄
-    @Column
-    private String sex;   //性别
-    @Column
-    private String password; //密码
-    @Column
-    private String salt;// 加密密码的盐
-    @Column
-    private String email; //邮箱
-    @Column
-    private Date createTime ; //创建时间
-    @Column
-    private String userType; //用户类型
-    @Column
-    private Long departmentId; //部门id
-    @Column
-    private Byte state; //用户状态,0:创建未认证（比如没有激活，没有输入验证码等等）--等待验证的用户 ,
-    // 1:正常状态,2：用户被锁定.
-    @ManyToMany(fetch = FetchType.EAGER) // 立即从数据库中进行加载数据
-    @JoinTable(name = "SysUserRole", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = {
-            @JoinColumn(name = "roleId") })
-    private List<SysRole> roleList;//一个用户具有多个角色
 
     /**
-     * 密码盐.
-     *
-     * @return
+     * 用户id
      */
+    @Id
+    @GeneratedValue
+    private Long userId;
+    @Column
+    /**
+     * 用户名
+     */
+    private String username;
+
+    /**
+     * 年龄
+     */
+    @Column
+    private Integer age;
+
+    /**
+     * 性别
+     */
+    @Column
+    private String sex;
+
+    /**
+     * 密码
+     */
+    @Column
+    private String password;
+
+    /**
+     * 加密密码的盐
+     */
+    @Column
+    private String salt;
+
+    /**
+     * 邮箱
+     */
+    @Column
+    private String email;
+
+    /**
+     * 创建时间
+     */
+    @Column
+    private Date createTime ;
+
+    /**
+     * 用户类型
+     */
+    @Column
+    private String userType;
+
+    /**
+     * 部门id
+     */
+    @Column
+    private Long departmentId;
+
+    /**
+     * 用户状态
+     * 0:创建未认证（比如没有激活，没有输入验证码等等）--等待验证的用户
+     * 1:正常状态
+     * 2：用户被锁定.
+     */
+    @Column
+    private Byte state;
+    /**
+     * 立即从数据库中进行加载数据
+     * 一个用户具有多个角色
+     */
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "SysUserRole", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = {
+            @JoinColumn(name = "roleId") })
+    private List<SysRole> roleList;
+
+
     public String getCredentialsSalt() {
         return this.username + this.salt;
     }
