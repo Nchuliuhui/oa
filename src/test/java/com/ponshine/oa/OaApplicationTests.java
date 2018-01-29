@@ -24,10 +24,10 @@ public class OaApplicationTests {
 	@Test
 	public void test() throws Exception {
         User user = new User();
-        user.setUserId(1L);
+        user.setUserId(2L);
         user.setEmail("122@qq.com");
         user.setPassword("123");
-        //userRepository.save(user);
+        userRepository.save(user);
         User user1 = userRepository.findByEmailAndPassword("122@qq.com", "123");
         //User user1 = userRepository.findByEmailAndPassword("122@qq.com","123");
         Assert.assertEquals("122@qq.com", user1.getEmail());

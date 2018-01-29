@@ -55,8 +55,9 @@ public class UserService {
 
 
     @Transactional(readOnly=true)
-    public User findByUsername(String userName) {
+    public User findByUsername(String username) {
         System.out.println("UserInfoServiceImpl.findByUsername()");
-        return userRepository.findByUsername(userName);
+        User user = userRepository.findByUsername(username);
+        return user;
     }
 }

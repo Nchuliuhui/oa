@@ -23,11 +23,15 @@ import java.util.Map;
 @Controller
 public class UserController {
 
-    @RequestMapping(value = "/login" , method =  RequestMethod.GET)
-    public String login(){
-        return "/login";
+    @RequestMapping({ "/", "index" })
+    public String index() {
+        return "/index";
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "/login";
+    }
     @RequestMapping(value = "/login" , method = RequestMethod.POST)
     public String login(HttpServletRequest request , Map<String , Object> map){
         System.out.println("UserController.login");

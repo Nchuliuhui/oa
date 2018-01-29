@@ -17,33 +17,33 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController {
 
-    @ResponseBody
-    @RequestMapping("/hello")
-    public String hello() {
-        return "Hello World";
-    }
-
-    @RequestMapping("/index")
-    public String index(ModelMap map) {
-        //map.addAttribute("hello", "hello Thymeleaf!");
-        return "index";
-    }
-    @RequestMapping("/register")
-    public String register(ModelMap map) {
-        //map.addAttribute("hello", "hello Thymeleaf!");
-        return "login/create-account";
-    }
-    @RequestMapping(value = "/login1")
-    public String login(ModelMap map) {
-        //map.addAttribute("hello", "hello Thymeleaf!");
-        System.out.print("hahahah");
-        return "index/login";
-    }
-    @RequestMapping("/login")
-    public String login1(ModelMap map) {
-        //map.addAttribute("hello", "hello Thymeleaf!");
-        return "login";
-    }
+//    @ResponseBody
+//    @RequestMapping("/hello")
+//    public String hello() {
+//        return "Hello World";
+//    }
+//
+//    @RequestMapping("/index")
+//    public String index(ModelMap map) {
+//        //map.addAttribute("hello", "hello Thymeleaf!");
+//        return "index";
+//    }
+//    @RequestMapping("/register")
+//    public String register(ModelMap map) {
+//        //map.addAttribute("hello", "hello Thymeleaf!");
+//        return "login/create-account";
+//    }
+//    @RequestMapping(value = "/login1")
+//    public String login(ModelMap map) {
+//        //map.addAttribute("hello", "hello Thymeleaf!");
+//        System.out.print("hahahah");
+//        return "index/login";
+//    }
+//    @RequestMapping("/login")
+//    public String login1(ModelMap map) {
+//        //map.addAttribute("hello", "hello Thymeleaf!");
+//        return "login";
+//    }
 }
 
 

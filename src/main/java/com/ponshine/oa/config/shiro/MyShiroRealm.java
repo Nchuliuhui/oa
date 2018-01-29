@@ -63,11 +63,10 @@ public class MyShiroRealm extends AuthorizingRealm {
         User user = (User) principals.getPrimaryPrincipal();
 
         for(SysRole role:user.getRoleList()){
-
             authorizationInfo.addRole(role.getRole());
-            System.out.println(role.getPermissions());
+            System.out.println( role.getPermissions());
             for(SysPermission p:role.getPermissions()){
-                System.out.println(p);
+                System.out.println( p);
                 authorizationInfo.addStringPermission(p.getPermission());
             }
         }
