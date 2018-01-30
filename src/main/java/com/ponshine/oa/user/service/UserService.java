@@ -22,39 +22,30 @@ public class UserService {
 
     private ResponseResult resultResponse = new ResponseResult();
 
-    /**
-     * 登录
-     * @param email
-     * @param password
-     * @return
-     */
-    public User login(String  email , String password){
-
-        return userRepository.findByEmailAndPassword(email,password);
-
-    }
+//    /**
+//     * 登录
+//     * @param email
+//     * @param password
+//     * @return
+//     */
+//    public User login(String  email , String password){
+//
+//        return userRepository.findByEmailAndPassword(email,password);
+//
+//    }
 
     /**
      * 注册
+     *
      * @param user
      * @return
      */
-    public ResponseResult register(User user){
-        User userUsed = userRepository.findByEmail(user.getEmail());
-        if(userUsed.getUserId() != 0){
-            resultResponse.setResult(0);
-            resultResponse.setResultInfo("邮箱已被注册");
-        }else{
-            userRepository.save(user);
-            resultResponse.setResult(1);
-            resultResponse.setResultInfo("注册成功");
-        }
-        return resultResponse;
+    public void  register(User user) {
+       userRepository.save(user);
     }
 
 
-
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public User findByUsername(String username) {
         System.out.println("UserInfoServiceImpl.findByUsername()");
         User user = userRepository.findByUsername(username);

@@ -4,6 +4,7 @@ import com.ponshine.oa.user.entity.SysPermission;
 import com.ponshine.oa.user.entity.SysRole;
 import com.ponshine.oa.user.entity.User;
 import com.ponshine.oa.user.service.UserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
