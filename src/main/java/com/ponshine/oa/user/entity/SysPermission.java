@@ -1,6 +1,7 @@
 package com.ponshine.oa.user.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author liuhui
@@ -11,7 +12,7 @@ import javax.persistence.*;
  * @date 2018/01/07 18:20
  */
 @Entity
-public class SysPermission {
+public class SysPermission implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

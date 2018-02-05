@@ -4,12 +4,10 @@ import com.ponshine.oa.user.entity.User;
 import com.ponshine.oa.user.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,19 +40,25 @@ public class IndexController {
     @RequestMapping({ "/", "index" })
     public String index() {
         User user  = (User)SecurityUtils.getSubject().getPrincipal();
+        System.out.print(user);
         System.out.println("SESSION ID = " + user.getUserId());
 
         System.out.println("SESSION ID = " + SecurityUtils.getSubject().getSession().getId());
-        System.out.println("用户名：" + SecurityUtils.getSubject().getPrincipal());
+        //System.out.println("用户名：" + SecurityUtils.getSubject().getPrincipal());
         System.out.println("HOST：" + SecurityUtils.getSubject().getSession().getHost());
         System.out.println("TIMEOUT ：" + SecurityUtils.getSubject().getSession().getTimeout());
         System.out.println("START：" + SecurityUtils.getSubject().getSession().getStartTimestamp());
         System.out.println("LAST：" + SecurityUtils.getSubject().getSession().getLastAccessTime());
-        return "/index";
+        return "pages/index";
     }
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(){
-        return "/register";
+        return "register";
+    }
+
+    @RequestMapping(value = "/404" , method = RequestMethod.GET)
+    public String to404(){
+        return "/404";
     }
 
     /**
@@ -113,6 +117,7 @@ public class IndexController {
             return "/register";
         }
         user.setUserName(userName);
+        user.setSex(request.getParameter("sex"));
         String password = request.getParameter("password");
         String algorithmName = "md5";
         String salt = new SecureRandomNumberGenerator().nextBytes().toHex(); //加密的盐

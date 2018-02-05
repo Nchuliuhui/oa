@@ -21,6 +21,7 @@ import java.util.Map;
  * @date
  */
 @Controller
+@RequestMapping("user")
 public class UserController {
 
     /**
@@ -28,7 +29,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/userList")
-    @RequiresPermissions("userInfo:view")//权限管理;
+    @RequiresPermissions("user:view")//权限管理;
     public String userInfo(){
         return "userInfo";
     }
@@ -38,7 +39,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/userAdd")
-    @RequiresPermissions("userInfo:add")//权限管理;
+    @RequiresPermissions("user:add")//权限管理;
     public String userInfoAdd(){
         return "userInfoAdd";
     }
@@ -47,7 +48,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/userDel")
-    @RequiresPermissions("userInfo:del")//权限管理;
+    @RequiresPermissions("user:del")//权限管理;
     public String userDel(){
         return "userInfoDel";
     }
