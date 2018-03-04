@@ -11,19 +11,18 @@ import java.io.Serializable;
  * @Description: TODO    权限实体类;
  * @date 2018/01/07 18:20
  */
-@Entity
+
 public class SysPermission implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue
+
     private long id;// 主键.
     private String name;// 名称.
 
     /**
      * 资源类型，[menu|button]
      */
-    @Column(columnDefinition = "enum('menu','button')")
+
     private String resourceType;
     /**
      * 资源路径.

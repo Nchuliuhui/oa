@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
 	<title>Form Pack </title>
 	<meta name="keywords" content="" />
@@ -8,13 +11,31 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 	<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="css/templatemo_style.css" rel="stylesheet" type="text/css">	
+	<link href="css/templatemo_style.css" rel="stylesheet" type="text/css">
 </head>
 <body class="templatemo-bg-gray">
 	<h1>Form Pack</h1>
     <h2></h2>
+<!--	 判断当前用户是否已经认证,已认证就可以看到标签中的内容
+	<shiro:authenticated>
+		看到内容就说明你已经认证成功了!
+	</shiro:authenticated>
+
+	<br>
+
+	&lt;!&ndash; 判断当前用户是否拥有指定的权限 &ndash;&gt;
+	<shiro:hasPermission name="area">
+		<input value="这是判断权限的按钮">
+	</shiro:hasPermission>
+
+	<br>
+
+	&lt;!&ndash; 判断当前用户是否拥有指定的角色 &ndash;&gt;
+	<shiro:hasRole name="admi">
+		<input value="这是判断角色的按钮">
+	</shiro:hasRole>-->
 	<div class="container center-block templatemo-form-list-container templatemo-container">
-		<div class="col-md-12">		
+		<div class="col-md-12">
 		<table class="table table-striped table-hover">
 	      <thead>
 	        <tr>

@@ -40,15 +40,6 @@ public class IndexController {
     @RequestMapping({ "/", "index" })
     public String index() {
         User user  = (User)SecurityUtils.getSubject().getPrincipal();
-        System.out.print(user);
-        System.out.println("SESSION ID = " + user.getUserId());
-
-        System.out.println("SESSION ID = " + SecurityUtils.getSubject().getSession().getId());
-        //System.out.println("用户名：" + SecurityUtils.getSubject().getPrincipal());
-        System.out.println("HOST：" + SecurityUtils.getSubject().getSession().getHost());
-        System.out.println("TIMEOUT ：" + SecurityUtils.getSubject().getSession().getTimeout());
-        System.out.println("START：" + SecurityUtils.getSubject().getSession().getStartTimestamp());
-        System.out.println("LAST：" + SecurityUtils.getSubject().getSession().getLastAccessTime());
         return "pages/index";
     }
     @RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -58,7 +49,7 @@ public class IndexController {
 
     @RequestMapping(value = "/404" , method = RequestMethod.GET)
     public String to404(){
-        return "/404";
+        return "404";
     }
 
     /**
@@ -78,7 +69,6 @@ public class IndexController {
      */
     @RequestMapping(value = "/login" , method = RequestMethod.POST)
     public String login(HttpServletRequest request , Map<String , Object> map){
-        System.out.println("UserController.login");
         String exception = (String) request.getAttribute("shiroLoginFailure");
         String msg = "";
         if(exception != null){

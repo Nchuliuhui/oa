@@ -12,15 +12,12 @@ import java.util.List;
  * @Description: TODO
  * @date 2018/01/04 23:54
  */
-@Entity
 public class SysRole implements Serializable{
     private static final long serialVersionUID = 1L;
 
     /**
      * 编号
      */
-    @Id
-    @GeneratedValue
     private Long id;
 
     /**
@@ -41,9 +38,6 @@ public class SysRole implements Serializable{
     /**
      * 角色 -- 权限关系：多对多关系;
      */
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "SysRolePermission", joinColumns = { @JoinColumn(name = "roleId") }, inverseJoinColumns = {
-            @JoinColumn(name = "permissionId") })
     private List<SysPermission> permissions;
 
     /**
@@ -51,9 +45,6 @@ public class SysRole implements Serializable{
      * 一个角色对应多个用户
      */
    // @ManyToMany(fetch = FetchType.EAGER)
-    @ManyToMany
-    @JoinTable(name = "SysUserRole", joinColumns = { @JoinColumn(name = "roleId") }, inverseJoinColumns = {
-            @JoinColumn(name = "userId") })
     private List<User> users;
 
     public Long getId() {

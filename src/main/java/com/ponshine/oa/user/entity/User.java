@@ -13,69 +13,71 @@ import java.util.List;
  * @Description: TODO 用户实体类
  * @date
  */
-@Entity
 public class User implements Serializable{
 
     /**
      * 用户id
      */
-    @Id
-    @GeneratedValue
     private Long userId;
 
     /**
      * 用户名
      */
-    @Column(unique = true)
     private String username;
 
     /**
      * 年龄
      */
-    @Column
+
     private Integer age;
 
     /**
      * 性别
      */
-    @Column
+
     private String sex;
 
     /**
      * 密码
      */
-    @Column
+
     private String password;
 
     /**
      * 加密密码的盐
      */
-    @Column
+
     private String salt;
 
     /**
      * 邮箱
      */
-    @Column
+
     private String email;
 
     /**
      * 创建时间
      */
-    @Column
+
     private Date createTime ;
 
     /**
      * 用户类型
      */
-    @Column
+    
     private String userType;
 
     /**
      * 部门id
      */
-    @Column
-    private Long departmentId;
+    
+    private String departmentId;
+    /**
+     * 家庭住址
+     */
+  
+    private String address;
+
 
     /**
      * 用户状态
@@ -83,15 +85,12 @@ public class User implements Serializable{
      * 1:正常状态
      * 2：用户被锁定.
      */
-    @Column
+ 
     private Byte state;
     /**
      * 立即从数据库中进行加载数据
      * 一个用户具有多个角色
      */
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "SysUserRole", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = {
-            @JoinColumn(name = "roleId") })
     private List<SysRole> roleList;
 
 
@@ -171,12 +170,8 @@ public class User implements Serializable{
         this.userType = userType;
     }
 
-    public Long getDepartmentId() {
+    public String getDepartmentId() {
         return departmentId;
-    }
-
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
     }
 
     public Byte getState() {
@@ -199,7 +194,27 @@ public class User implements Serializable{
         super();
     }
 
-    public User(String username, Integer age, String sex, String password, String salt, String email, Date createTime, String userType, Long departmentId, Byte state, List<SysRole> roleList) {
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public User(String username, Integer age, String sex, String password, String salt, String email, Date createTime, String userType, String departmentId, String address, Byte state, List<SysRole> roleList) {
         this.username = username;
         this.age = age;
         this.sex = sex;
@@ -209,6 +224,7 @@ public class User implements Serializable{
         this.createTime = createTime;
         this.userType = userType;
         this.departmentId = departmentId;
+        this.address = address;
         this.state = state;
         this.roleList = roleList;
     }
@@ -225,7 +241,8 @@ public class User implements Serializable{
                 ", email='" + email + '\'' +
                 ", createTime=" + createTime +
                 ", userType='" + userType + '\'' +
-                ", departmentId=" + departmentId +
+                ", departmentId='" + departmentId + '\'' +
+                ", address='" + address + '\'' +
                 ", state=" + state +
                 '}';
     }
